@@ -53,9 +53,17 @@ jobs:
           cp LICENSE dist
           cp package.json dist
 
+      - name: Create tar.gz archive
+        run: tar -czvf custom-electron-titlebar-${{ github.ref_name }}.tar.gz dist
+
+      - name: Create zip archive
+        run: zip -r custom-electron-titlebar-${{ github.ref_name }}.zip dist
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: dist/**
+          files: |
+            custom-electron-titlebar-${{ github.ref_name }}.tar.gz
+            custom-electron-titlebar-${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
