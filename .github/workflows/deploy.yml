@@ -38,8 +38,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
-      - name: Build project
-        run: pnpm build
+      - name: Clean previous builds
+        run: pnpm run clean
+
+      - name: Build TypeScript
+        run: pnpm run build:package
+
+      - name: Compile JavaScript with Babel
+        run: pnpm run build:babel
 
       - name: Copy additional files
         run: |
