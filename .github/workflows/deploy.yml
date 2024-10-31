@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*.*.*" # Triggers on tags like v1.0.0
   workflow_dispatch:
 
 permissions:
@@ -23,11 +23,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
-          name: build-artifact
-          path: dist
+          version: 7
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Build project
+        run: pnpm build
 
       - name: Copy additional files
         run: |
