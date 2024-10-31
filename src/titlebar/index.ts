@@ -57,8 +57,8 @@ export class CustomTitlebar extends ThemeBar {
 			restoreDown: 'Restore Down'
 		},
 		unfocusEffect: true,
-		minWidth: 400,
-		minHeight: 270,
+		minWidth: 10,
+		minHeight: 10,
 	}
 
 	private platformIcons: { [key: string]: string }

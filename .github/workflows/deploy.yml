@@ -48,7 +48,7 @@ jobs:
         run: pnpm run build:babel
 
       - name: Set correct path
-        run: sed -i "s/\\/dist//g" package.json
+        run: sed -i "s/\/dist//g" package.json
 
       - name: Copy additional files
         run: |
