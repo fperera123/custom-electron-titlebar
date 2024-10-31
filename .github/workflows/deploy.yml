@@ -47,6 +47,9 @@ jobs:
       - name: Compile JavaScript with Babel
         run: pnpm run build:babel
 
+      - name: Set correct path
+        run: sed -i "s/\\/dist//g" package.json
+
       - name: Copy additional files
         run: |
           cp README.md dist
